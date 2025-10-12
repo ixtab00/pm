@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Add Account{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="ms-3">
+    <form action="/add" method="POST">
+    <label for="account" class="form-label">Service:</label>
+    <input type="text" id="account" name="account" class="form-control">
+
+    <label for="login" class="form-label">Username:</label>
+    <input type="text" id="login" name="login" class="form-control">
+
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" id="password" name="password" class="form-control"><br>
+
+    <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

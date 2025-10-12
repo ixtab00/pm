@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Accounts{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<script>
+  let button = document.getElementById("del-bttn");
+  button.addEventListener(onclick, () => {
+    fetch(
+      "/delete/"
+    )
+  })
+</script>
+  <div class="ms-3">
+  <h1>My Accounts</h1>
+    {% for inner_list in ctx %}
+        <div class="card" style="width: 34rem;">
+            <div class="card-header">Data for {{ inner_list[0]  }}{% if inner_list[5] == False %}
+                  <span class="badge rounded-pill bg-success">Safe!</span>
+                {% else %}
+                  <span class="badge rounded-pill bg-danger">Not Safe!</span>
+                {% endif %}
+            </div>
+            <ul class="list-group list-group-flush">
+                <span class="input-group-text" id="basic-addon1-"{{ inner_list[0] }}>Username: </span>
+                <li class="list-group-item" id="username">{{ inner_list[1] }}</li>
+                <span class="input-group-text" id="basic-addon2-"{{ inner_list[0] }}>Password: </span>
+                <li class="list-group-item" id="password">{{ inner_list[2] }}</li>
+                <span class="input-group-text" id="basic-addon3-"{{ inner_list[0] }}>Date Added: </span>
+                <li class="list-group-item" id="date">{{ inner_list[3] }}</li>
+                <div class="card-footer">
+                <form action="/delete/{{ inner_list[4] }}" method="POST">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn btn-danger" id="del-bttn">Delete</button>
+                </form>
+                </div>
+            </ul>
+        </div>
+    <br>
+    {% endfor %}
+  </div>
+{% endblock %}

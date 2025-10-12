@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Auth{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="ms-3">
+    <form action="/login" method="POST">
+    <label for="account" class="form-label">Email:</label>
+    <input type="text" id="account" name="email" class="form-control">
+    <br>
+    <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}
